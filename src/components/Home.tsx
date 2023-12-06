@@ -26,9 +26,7 @@ interface LocationData {
 const Home: React.FC = () => {
   const [selectPosition, setSelectPosition] =
     React.useState<LocationData | null>(null);
-  const [recentSearches, setRecentSearches] = useState<LocationData[]>(
-    []
-  );
+  const [recentSearches, setRecentSearches] = useState<LocationData[]>([]);
   const [searchParam, setSearchParam] = useState<string>("");
 
   const location = useLocation();
@@ -55,8 +53,10 @@ const Home: React.FC = () => {
             type: "administrative",
           };
 
-          console.log("qfromhome", q)
-          setSearchParam(`localhost:3000/search?q=${q}`)
+          console.log("qfromhome", q);
+          setSearchParam(
+            `https://granular-maps-by-superriyadev.netlify.app/search?q=${q}`
+          );
           const queryString: string = new URLSearchParams(params).toString();
           const requestOptions: { method: string; redirect?: RequestRedirect } =
             {
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
             setSelectPosition={setSelectPosition}
             recentSearches={recentSearches}
             setRecentSearches={setRecentSearches}
-            searchParam ={searchParam}
+            searchParam={searchParam}
           />
         </div>
         <div className="wrap">
